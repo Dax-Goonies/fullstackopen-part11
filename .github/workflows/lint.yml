@@ -32,7 +32,10 @@ jobs:
       - name: Run Playwright tests
         run: npm run test:e2e
       - name: Trigger deployment
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: |
+          github.event_name == 'push' &&
+          github.ref == 'refs/heads/main' && 
+          !contains(toJson(github.event.commits.*.message), '#skip')
         run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
 
   tag_release:
