@@ -43,7 +43,7 @@ jobs:
       - name: Discord success notification
         if: |
           success() &&
-          github.event.name == 'push' &&
+          github.event_name == 'push' &&
           github.ref == 'refs/heads/main'
         uses: sarisia/actions-status-discord@v1
         with:
