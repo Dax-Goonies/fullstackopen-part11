@@ -6,6 +6,8 @@ import ErrorMessage from './ErrorMessage'
 import PokemonPage from './PokemonPage'
 import PokemonList from './PokemonList'
 
+const x = "double quotes instead of single"
+
 const mapResults = (({ results }) => results.map(({ url, name }) => ({
   url,
   name,
