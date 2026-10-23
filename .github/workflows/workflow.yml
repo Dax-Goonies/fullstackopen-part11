@@ -1,0 +1,82 @@
+name: Deployment pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./fs-pokedex
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: npm install  
+      - name: Check style
+        run: npm run eslint
+      - name: Run tests
+        run: npm test
+      - name: Build
+        run: npm run build
+      - name: Install playwright browsers
+        run: npx playwright install --with-deps
+      - name: Run E2E tests
+        run: npm run test:e2e
+
+  deploy:     
+    needs: [build_and_test]
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' && 
+      !contains(toJson(github.event.commits.*.message), '#skip')
+    steps:
+      - name: Trigger deployment
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+
+  notify_success:
+    needs: [build_and_test, deploy]
+    runs-on: ubuntu-latest 
+    if: ${{ success() }}
+    steps:
+      - uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: success
+          title: "Deployment successful"
+
+  notify_failure:
+    needs: [build_and_test, deploy]
+    runs-on: ubuntu-latest 
+    if: ${{ failure() }}
+    steps:
+      - uses: sarisia/actions-status-discord@v1
+        with: 
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: failure
+          title: "Deployment failed"
+          description: "Commit ${{ github.sha }} by ${{ github.actor }} broke the build"
+
+          
+  tag_release:
+    needs: [build_and_test, deploy]
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' && 
+      github.event_name == 'push' &&
+      !contains(toJson(github.event.commits.*.message), '#skip')
+    steps:
+      - uses: actions/checkout@v6
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.75.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
