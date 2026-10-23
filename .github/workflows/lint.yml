@@ -60,6 +60,7 @@ jobs:
           title: "Build failed"
           description: "Commit ${{ github.sha }} by ${{ github.actor }} broke the build"
 
+          
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-latest
