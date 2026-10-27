@@ -24,8 +24,12 @@ The exercise asking for a CI/CD pipeline built around one of my own applications
 
 https://github.com/Dax-Goonies/fullstackopen-part11-exo21
 
-## Part 11 Repository
+## Links
 
-Link to the repository for Full Stack Open Part 11 CI/CD:
+- Repository for Full Stack Open Part 11 CI/CD answers: https://github.com/Dax-Goonies/fullstackopen-part11
 
-https://github.com/Dax-Goonies/fullstackopen-part11
+- Pokedex app source (original template): https://github.com/fullstack-hy2020/fs-pokedex
+
+- Pokedex app in this repository: https://github.com/Dax-Goonies/fullstackopen-part11/tree/main/fs-pokedex
+
+- Live app: https://fullstackopen-part11-zv2c.onrender.com
