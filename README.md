@@ -33,3 +33,5 @@ https://github.com/Dax-Goonies/fullstackopen-part11-exo21
 - Pokedex app in this repository: https://github.com/Dax-Goonies/fullstackopen-part11/tree/main/fs-pokedex
 
 - Live app: https://fullstackopen-part11-zv2c.onrender.com
+
+- Pull Request (Exercise 21): https://github.com/Dax-Goonies/fullstackopen-part11/pull/6
