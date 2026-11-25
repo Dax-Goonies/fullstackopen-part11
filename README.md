@@ -1,8 +1,8 @@
-# Full Stack Open — Part 11: CI/CD
+# 🚀 Full Stack Open — Part 11: CI/CD
 
 This repository contains the CI/CD exercises for Part 11 of Full Stack Open, built around the [fs-pokedex](https://github.com/fullstack-hy2020/fs-pokedex) example application.
 
-## What's here
+## 📦 What's here
 
 The `fs-pokedex/` application, deployed to Render, with a GitHub Actions pipeline (`.github/workflows/`) that runs on every push and pull request to `main`:
 
@@ -16,22 +16,18 @@ The `fs-pokedex/` application, deployed to Render, with a GitHub Actions pipelin
 - Automatic version tagging on successful deploys
 - A separate, periodic health check workflow pinging the deployed app
 
-Live app: https://fullstackopen-part11-zv2c.onrender.com
+🔗 Live app: https://fullstackopen-part11-zv2c.onrender.com
 
-## Own CI/CD pipeline exercise
+## 🧩 Own CI/CD pipeline exercise
 
 The exercise asking for a CI/CD pipeline built around one of my own applications was done in a separate repository, using the bloglist app from Parts 4-5, since it's a different application entirely:
 
 https://github.com/Dax-Goonies/fullstackopen-part11-exo21
 
-## Links
+## 🔗 Links
 
 - Repository for Full Stack Open Part 11 CI/CD answers: https://github.com/Dax-Goonies/fullstackopen-part11
-
 - Pokedex app source (original template): https://github.com/fullstack-hy2020/fs-pokedex
-
 - Pokedex app in this repository: https://github.com/Dax-Goonies/fullstackopen-part11/tree/main/fs-pokedex
-
 - Live app: https://fullstackopen-part11-zv2c.onrender.com
-
 - Pull Request (Exercise 21): https://github.com/Dax-Goonies/fullstackopen-part11/pull/6
